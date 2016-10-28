@@ -1,7 +1,7 @@
 import numpy
 
 
-def hough_line_transform(img):
+def hough_line(img):
     thetas = numpy.deg2rad(numpy.arange(-90.0, 90.0))
     width, height = img.shape
 
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     # Create binary image and call hough_line
     image = numpy.zeros((50, 50))
     image[10:40, 10:40] = numpy.eye(30)
-    accumulator, thetas, rhos = hough_line_transform(image)
+    accumulator, thetas, rhos = hough_line(image)
 
     # Easiest peak finding based on max votes
     idx = numpy.argmax(accumulator)
