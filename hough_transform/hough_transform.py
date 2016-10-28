@@ -28,6 +28,13 @@ def hough_line(img):
     return accumulator, thetas, rhos
 
 
+def polar_space_to_cartesian_space_line(theta, rho):
+    m = -numpy.cos(theta) / numpy.sin(theta)
+    b = rho / numpy.sin(theta)
+
+    return m, b
+
+
 if __name__ == '__main__':
     # Create binary image and call hough_line
     image = numpy.zeros((50, 50))
@@ -39,3 +46,5 @@ if __name__ == '__main__':
     rho = rhos[idx / accumulator.shape[1]]
     theta = thetas[idx % accumulator.shape[1]]
     print("rho={0:.2f}, theta={1:.0f}".format(rho, numpy.rad2deg(theta)))
+    m, b = polar_space_to_cartesian_space_line(theta, rho)
+    print("y = %s * x + %s" % (m, b))
